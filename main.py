@@ -1,6 +1,14 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
+
+
+class Item(BaseModel):
+    name: str
+    description: str
+    price: float
+    tax: float
 
 
 @app.get("/")
@@ -9,5 +17,10 @@ def root():
 
 
 @app.get("/hello")
-def root():
+def hello():
     return {"message": "Hello"}
+
+
+@app.post("/items/")
+async def create_item(item: Item):
+    return item
