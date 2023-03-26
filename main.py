@@ -22,5 +22,5 @@ def hello():
 
 
 @app.post("/items/")
-async def create_item(item: Item):
+def create_item(item: Item):
     return item
